@@ -23,6 +23,12 @@ class LogH:
                 "logs"
             )
 
+            if os.path.split(sys.executable)[1] == "flydoc.exe":
+                logfolder = os.path.join(
+                    os.path.dirname(sys.executable),
+                    "logs"
+                )
+
             if not os.path.isdir(logfolder):
                 os.makedirs(logfolder)
 
