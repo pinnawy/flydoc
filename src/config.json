@@ -1,0 +1,13 @@
+{
+"title": "Test Document",
+"author": "Henson",
+"description": "this is a description",
+"header": [],
+"theme": "default",
+"catalog": true,
+"ignore": {
+    "files": [],
+    "folders": []
+},
+"links": {}
+}
