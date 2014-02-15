@@ -8,7 +8,8 @@
 
 __version__ = '0.9'
 __all__ = ["PinYin"]
-
+import sys
+import chardet
 import os.path
 
 
@@ -20,11 +21,16 @@ class PinYin(object):
                 os.path.dirname(os.path.realpath(__file__)),
                 "word.data"
             )
+            if not os.path.isfile(dict_file):
+                dict_file = os.path.join(
+                    os.path.dirname(sys.executable),
+                    "word.data"
+                )
         self.dict_file = dict_file
 
     def load_word(self):
         if not os.path.exists(self.dict_file):
-            raise IOError("NotFoundFile")
+            raise IOError("%s -- %s " % (self.dict_file, sys.executable))
 
         with file(self.dict_file) as f_obj:
             for f_line in f_obj.readlines():
@@ -38,7 +44,7 @@ class PinYin(object):
     def hanzi2pinyin(self, string=""):
         result = []
         if not isinstance(string, unicode):
-            string = string.decode("utf-8")
+            string = string.decode(chardet.detect(string)['encoding'])
 
         for char in string:
             key = '%X' % ord(char)

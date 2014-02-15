@@ -8,8 +8,12 @@
               IFLYTEK Education Division Architecture Team
 @version:    $Id$
 """
-import os
 import sys
+
+reload(sys)
+sys.setdefaultencoding('UTF-8')
+
+import os
 import codecs
 import shutil
 import markdown
@@ -50,7 +54,7 @@ class Main:
             return
 
         tplContent = ""
-        with open(tpl, "rb") as fs:
+        with codecs.open(tpl, "rb", encoding="utf-8") as fs:
             tplContent = fs.read()
 
         # 获取待转换文档的目录树
@@ -92,7 +96,7 @@ class Main:
                 content = """
 [CATALOG]
 """
-            with open(tree["path"], "rb") as fs:
+            with codecs.open(tree["path"], "rb", encoding="utf-8") as fs:
                 content += fs.read()
 
             m2html = markdown.markdown(content, [
@@ -114,10 +118,12 @@ class Main:
                 "title": settings.get("title", ""),
                 "description": settings.get("description", "%s created by flydoc" % tree["name"]),
                 "author": settings.get("author", "flydoc"),
-                "header": settings.get("header", {}),
+                "headers": settings.get("headers", []),
                 "filename": tree["name"],
                 "createtime": tree["date"],
+                "level": tree["level"],
                 "markdown": m2html,
+                "headerslength": len(settings.get("headers", [])),
                 "links": settings.get("links", {}),
                 "trees": trees
             }

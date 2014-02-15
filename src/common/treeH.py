@@ -10,6 +10,7 @@
 """
 import os
 import re
+import chardet
 from datetime import datetime
 from pinyinH import PinyinH
 
@@ -26,6 +27,7 @@ class TreeH:
                     "url": "",
                     "output": "",
                     "date": "",
+                    "level": 0,
                     "catalog": true,
                     "children": []
                 }
@@ -37,7 +39,7 @@ class TreeH:
         return TreeH.lists(folder, rooturl, rootpath, filters)
 
     @staticmethod
-    def lists(folder, rooturl=".", rootpath="/", filters=None):
+    def lists(folder, rooturl="", rootpath="/", filters=None, level=0):
         if not os.path.isdir(folder):
             return []
 
@@ -95,9 +97,12 @@ class TreeH:
 
             # 文件名去掉 1.这类排序用符号
             info["name"] = re.sub("-$", "", re.sub("^\d\.", "", filename))
+            if not isinstance(info["name"], unicode):
+                info["name"] = info["name"].decode(chardet.detect(info["name"])['encoding'])
             pinyin = PinyinH.loads(info["name"])
 
             info["path"] = path
+            info["level"] = level
             info["output"] = os.path.join(rootpath, pinyin)
             info["catalog"] = False if filename and filename[-1] == "-" else True
             if os.path.isfile(path):
@@ -110,9 +115,10 @@ class TreeH:
             if os.path.isdir(path):
                 info["children"] = TreeH.lists(
                     path,
-                    rooturl="%s/%s" % (rooturl, fd),
-                    rootpath=os.path.join(rootpath, fd),
-                    filters=filters
+                    rooturl="%s/%s" % (rooturl, pinyin),
+                    rootpath=os.path.join(rootpath, pinyin),
+                    filters=filters,
+                    level=level+1
                 )
 
             infos.append(info)

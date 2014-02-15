@@ -4318,10 +4318,12 @@ border-right:1px solid #e7e7e9;
 }
 
 .footer {
-position:fixed;
+/*position:fixed;
 bottom:0;
 left:0;
-padding:15px;
+padding:15px;*/
+background-color: #000;
+width: 100%;
 }
 
 #github-ribbon {
