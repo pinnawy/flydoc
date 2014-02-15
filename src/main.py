@@ -75,17 +75,17 @@ class Main:
 
             shutil.copytree(staticsFolder, targetStaticsFolder)
 
-        Main.parse(trees, tplContent)
+        Main.parse(trees, tplContent, trees)
 
     @staticmethod
-    def parse(trees, tplContent):
+    def parse(trees, tplContent, wholeTrees):
         for tree in trees:
             targetFolder = os.path.split(tree["output"])[0]
             if not os.path.isdir(targetFolder):
                 os.makedirs(targetFolder)
 
             if tree["children"]:
-                Main.parse(tree["children"], tplContent)
+                Main.parse(tree["children"], tplContent, wholeTrees)
 
             if not os.path.isfile(tree["path"]):
                 continue
@@ -125,7 +125,7 @@ class Main:
                 "markdown": m2html,
                 "headerslength": len(settings.get("headers", [])),
                 "links": settings.get("links", {}),
-                "trees": trees
+                "trees": wholeTrees
             }
 
             templateO = Template(tplContent)
