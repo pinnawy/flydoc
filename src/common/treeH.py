@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
-""" IFLYTEK Education Division Architecture Team
+"""
 
-@author:     shenghe <shenghe@iflytek.com>
-@license:    (C) 2013, iFlyTEK CO.Ltd. All rights reserved.
-              IFLYTEK Education Division Architecture Team
+@author:     shenghe
+@license:    (C) 2013, shenghe All rights reserved.
 @version:    $Id$
 """
 import os

@@ -3,7 +3,7 @@
 
 """
 
-@author:     shenghe <shenghe@iflytek.com>
+@author:     shenghe
 @license:    (C) 2013, shenghe All rights reserved.
 @version:    $Id$
 """
