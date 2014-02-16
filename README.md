@@ -105,6 +105,10 @@ if you don't use flydoc.exe, and use `python main.py [inputfolder] [outputfolder
 }
 ```
 
+## DEMO
+
+![Flydoc DEMO](https://github.com/shenghe/flydoc/blob/master/demo.png?raw=true)
+
 ## Thanks
 
 the idea is inspired by these projects:
