@@ -1,13 +1,15 @@
 {
-"title": "Test Document",
-"author": "Henson",
-"description": "this is a description",
-"header": [],
+"title": "",
+"author": "",
+"description": "",
+"headers": [
+    {"name": "navi", "url": "/index.html"}
+],
+"rooturl": "",
 "theme": "default",
 "catalog": true,
 "ignore": {
     "files": [],
     "folders": []
-},
-"links": {}
+}
 }

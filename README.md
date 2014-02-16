@@ -50,11 +50,19 @@ if you don't use flydoc.exe, and use `python main.py [inputfolder] [outputfolder
 
 ## Install
 
-1. download the sources from  github.
+1. use the flydoc.exe
 
-2. install the dependence.
+    download the flydoc.exe from  github.
 
-    pip install simplejson codecs shutil markdown Jinja2
+    execute the flydoc.exe with some command
+
+2. use the sources.
+
+    download the sources from  github.
+
+    install the dependence.
+
+        pip install simplejson codecs shutil markdown Jinja2
 
 ## Usage
 
@@ -76,7 +84,17 @@ if you don't use flydoc.exe, and use `python main.py [inputfolder] [outputfolder
 "headers": [
     {"name": "the header nav title", "url": "the url"}
 ],
+
+//the host or root of the navigation's url
+"rooturl": "",
+
 "theme": "default",
+
+/*
+    by default, the tool will insert the catalog automatically. you can change the method.
+    Another method that removes catalog is adding the `-` on the tail of the filename. for example:
+        1.examplemd-.md
+*/
 "catalog": true,
 
 // support regex
